@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking System... 💻</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #050505;
+            color: #00ff00; /* Màu xanh lá hacker */
+            font-family: 'Courier New', Courier, monospace;
+            height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .terminal {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid #00ff00;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+            position: relative;
+        }
+        .terminal-header {
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #888;
+            display: flex;
+            justify-content: space-between;
+        }
+        .console {
+            min-height: 250px;
+            font-size: 1rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+        /* Thanh phần trăm tiến trình */
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            border: 1px solid #00ff00;
+            margin-top: 15px;
+            display: none;
+            position: relative;
+        }
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background-color: #00ff00;
+            transition: width 0.1s linear;
+        }
+        .progress-text {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top: 0;
+            left: 0;
+            color: #000;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        /* Con trỏ nhấp nháy */
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 15px;
+            background-color: #00ff00;
+            animation: blink 0.8s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        /* Giao diện kết quả lãng mạn */
+        .success-box {
+            display: none;
+            text-align: center;
+            animation: fadeIn 1s ease forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .success-box h1 {
+            color: #ff4757;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+        }
+        .success-box p {
+            color: #fff;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="terminal">
+        <div class="terminal-header">
+            <span>root@love-hacker:~#</span>
+            <span>SYSTEM: ACTIVE</span>
+        </div>
+        
+        <!-- Khung chạy lệnh hacker -->
+        <div class="console" id="console-log"></div>
+        
+        <!-- Thanh tải phần trăm -->
+        <div class="progress-bar" id="progress-container">
+            <div class="progress-fill" id="progress-inner"></div>
+            <div class="progress-text" id="percent-text">0%</div>
+        </div>
+
+        <!-- Nội dung bất ngờ ẩn phía sau -->
+        <div class="success-box" id="success-view">
+            <h1>HACK THÀNH CÔNG! ❤️</h1>
+            <p>Hệ thống đã bẻ khóa thành công rào chắn và chính thức bước vào trái tim của em.<br><br>Cảm ơn công chúa vì đã luôn ở bên cạnh anh. Chúc em một ngày luôn ngập tràn nụ cười và hạnh phúc nhé! Anh yêu em rất nhiều! 💕</p>
+        </div>
+    </div>
+
+    <script>
+        const logs = [
+            "Connecting to database server...",
+            "Locating target: 'My Princess'...",
+            "Target found! IP: 192.168.love.1",
+            "Bypassing defense shields...",
+            "Injecting 'Love_Virus.exe'...",
+            "Cracking heart encryption standard...",
+            "Establishing permanent connection..."
+        ];
+
+        let logIndex = 0;
+        const consoleLog = document.getElementById('console-log');
+        const progressContainer = document.getElementById('progress-container');
+        const progressInner = document.getElementById('progress-inner');
+        const percentText = document.getElementById('percent-text');
+        const successView = document.getElementById('success-view');
+
+        // Hàm hiện từng dòng lệnh hacker
+        function printLogs() {
+            if (logIndex < logs.length) {
+                consoleLog.innerHTML += logs[logIndex] + "\n";
+                logIndex++;
+                setTimeout(printLogs, 800); // 0.8 giây hiện 1 dòng
+            } else {
+                consoleLog.innerHTML += "Starting deep bypass... Please wait.\n";
+                setTimeout(startProgressBar, 1000);
+            }
+        }
+
+        // Hàm chạy thanh phần trăm tiến trình
+        function startProgressBar() {
+            progressContainer.style.display = 'block';
+            let percent = 0;
+            
+            const interval = setInterval(() => {
+                percent += 2;
+                progressInner.style.width = percent + '%';
+                percentText.innerText = percent + '%';
+                
+                if (percent >= 100) {
+                    clearInterval(interval);
+                    setTimeout(showLove, 500);
+                }
+            }, 50); // Tốc độ chạy thanh phần trăm
+        }
+
+        // Hàm ẩn terminal hacker và hiện lời nhắn lãng mạn
+        function showLove() {
+            consoleLog.style.display = 'none';
+            progressContainer.style.display = 'none';
+            document.querySelector('.terminal-header').style.display = 'none';
+            
+            // Thay đổi viền terminal sang màu hồng lãng mạn
+            document.querySelector('.terminal').style.border = '1px solid #ff4757';
+            document.querySelector('.terminal').style.boxShadow = '0 0 20px rgba(255, 71, 87, 0.3)';
+            
+            successView.style.display = 'block';
+        }
+
+        // Kích hoạt ngay khi mở trang web
+        window.onload = () => {
+            consoleLog.innerHTML = "Initializing system hack...<span class='cursor'></span>\n";
+            setTimeout(printLogs, 1000);
+        };
+    </script>
+
+</body>
+</html>
